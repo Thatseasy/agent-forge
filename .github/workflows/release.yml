@@ -1,0 +1,59 @@
+name: Release Plugin & Package
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - run: uv run playwright install --with-deps chromium
+      - run: uv run ruff check src tests .agents/hooks forge.py scripts
+      - run: uv run mypy src
+      - run: uv run bandit -r src -ll
+      - run: uv run agent-forge doctor --hooks
+      - run: uv run agent-forge plugin validate --strict
+      - run: uv run pytest -q
+      - run: uv run agent-forge plugin build --out-dir dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-dist
+          path: dist/*
+
+  github-release:
+    needs: build-and-verify
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-dist
+          path: dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+
+  pypi-publish:
+    needs: build-and-verify
+    if: startsWith(github.ref, 'refs/tags/v') && vars.ENABLE_PYPI_PUBLISH == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/agent-forge
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-dist
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1

@@ -1,0 +1,13 @@
+name: superarchivist-boilerplate
+description: Standalone Superarchivist + Sourcer boilerplate profile for assessing project maturity, sourcing primary stack docs/MCPs, and syncing disciplined agent harnesses.
+skills:
+  - superarchivist-setup
+  - git-hygiene
+  - forge-research
+  - playwright-triage
+  - forge-qa-explorer
+include_hooks: true
+skill_rules:
+  - superarchivist-setup
+  - forge-research
+  - forge-qa-explorer

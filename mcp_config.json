@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "agent-forge": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/Thatseasy/agent-forge",
+        "agent-forge-mcp"
+      ],
+      "env": {
+        "PYTHONUTF8": "1"
+      }
+    }
+  }
+}

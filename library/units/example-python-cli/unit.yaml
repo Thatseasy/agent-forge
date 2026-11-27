@@ -1,0 +1,12 @@
+domain: example-python-cli
+version: "1.0.0"
+description: Generic Python CLI engineering unit (Typer, Pydantic v2, UTF-8 LF, strict ruff/mypy/pytest hygiene).
+profile: core-minimal
+skills:
+  - example-python-cli-conventions
+corpus_dir: corpus
+eval_suites:
+  - python-cli-refactor
+sanitized_verified: true
+compliance_notes:
+  - Contains strictly generic Python engineering guidelines with zero credentials or personal data.

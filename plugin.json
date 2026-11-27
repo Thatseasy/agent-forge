@@ -1,0 +1,47 @@
+{
+  "name": "agent-forge",
+  "displayName": "Agent Forge",
+  "version": "1.0.0",
+  "description": "Token-lean agent skill engineering, repository setup, security gating, ablation benchmarking, and exploratory QA pipeline.",
+  "license": "MIT",
+  "author": {
+    "name": "Thatseasy",
+    "url": "https://github.com/Thatseasy"
+  },
+  "homepage": "https://github.com/Thatseasy/agent-forge",
+  "repository": "https://github.com/Thatseasy/agent-forge",
+  "icon": "assets/logo.svg",
+  "logo": "assets/logo.svg",
+  "commands": "./commands",
+  "skills": "./skills",
+  "agents": "./agents",
+  "rules": "./rules/AGENTS.md",
+  "hooks": "./hooks.json",
+  "mcpServers": "./mcp_config.json",
+  "capabilities": [
+    "diagnostics",
+    "workspace-setup",
+    "security-gate",
+    "research-isolation",
+    "ablation-benchmarking",
+    "exploratory-qa",
+    "domain-units",
+    "skill-evolution"
+  ],
+  "keywords": [
+    "agent-forge",
+    "skills",
+    "mcp",
+    "evals",
+    "benchmark",
+    "playwright",
+    "qa",
+    "security-gate",
+    "context-firewall"
+  ],
+  "suggestedPrompts": [
+    "/forge-init to verify tools, hooks, and local secrets configuration",
+    "/forge-setup to assess this project and bootstrap AGENTS.md, ADRs, and hooks",
+    "/forge-gate to run 0-USD security, spec, and deduplication checks on skills"
+  ]
+}

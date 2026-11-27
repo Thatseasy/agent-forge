@@ -1,0 +1,31 @@
+suite_id: python-cli-refactor
+domain: python-cli
+description: Refactoring and hardening Python CLI modules with clean seams and UTF-8/LF handling.
+fixture_dir: fixture
+tasks:
+  - id: task-1-slug-normalizer
+    prompt: >-
+      Refactor cli_app.py so normalize_records deduplicates normalized slugs case-insensitively,
+      ignores empty entries, and writes UTF-8 without BOM with LF line endings.
+    verifier_cmd: "pytest -q"
+    edge_case: true
+  - id: task-2-cli-help-and-exit
+    prompt: >-
+      Add deterministic --help support and non-zero exit code on missing input file in cli_app.py.
+    verifier_cmd: "pytest -q"
+    edge_case: false
+  - id: task-3-batch-export
+    prompt: >-
+      Ensure export_manifest in cli_app.py sorts keys deterministically and handles empty lists.
+    verifier_cmd: "pytest -q"
+    edge_case: true
+near_miss_prompts:
+  - "Design a dark-mode CSS grid layout for a marketing landing page."
+  - "Configure PostgreSQL connection pooling and pgBouncer timeouts."
+  - "Write a Terraform module for an AWS S3 bucket with KMS encryption."
+  - "Inspect a Playwright screencast for mobile viewport overflow bugs."
+  - "Draft a quarterly product roadmap email for enterprise customers."
+soft_rubric:
+  - "Avoids duplicated normalization logic by reusing one helper."
+  - "Keeps functions small with early returns and explicit type hints."
+  - "Enforces UTF-8 without BOM and LF line endings when writing output files."

@@ -1,0 +1,5 @@
+# Zwei-Augen-Schutz für Agenten-, Skill-, Hook- und Lockfile-Definitionen
+AGENTS.md @owner
+.agents/** @owner
+library/** @owner
+skills-lock.json @owner

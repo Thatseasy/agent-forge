@@ -1,0 +1,18 @@
+name: Cloud Leaderboard & Nudge Sync (Opt-In)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cloud-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - run: uv run python forge.py lock --verify
+      - run: uv run python forge.py cloud-sync --target obsidian --dry-run
+      - uses: actions/upload-artifact@v4
+        with:
+          name: forge-leaderboards
+          path: staging/obsidian_export/

@@ -1,0 +1,13 @@
+name: research-and-eval
+description: Research, benchmarking, and continuous skill-improvement profile for agent-forge satellite workspaces.
+skills:
+  - python-cli-clean
+  - uv-project-setup
+  - forge-research
+  - forge-benchmark
+  - forge-qa-explorer
+include_hooks: true
+skill_rules:
+  - forge-research
+  - forge-benchmark
+  - forge-qa-explorer

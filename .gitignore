@@ -1,0 +1,17 @@
+.env
+.venv/
+.agents/state/
+staging/
+tmp/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+*.webm
+*.mp4
+qa-artifacts/
+dist/
+build/
+GATE_REPORT.json

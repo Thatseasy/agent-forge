@@ -1,0 +1,39 @@
+{
+  "agent-forge-global-safety": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "run_command|execute_command|bash|sh|terminal|shell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy; r=os.environ.get('AGY_PLUGIN_ROOT') or os.environ.get('CLAUDE_PLUGIN_ROOT') or '.'; p=os.path.join(r,'src','forge','hooks_global','guard.py'); os.path.isfile(p) and runpy.run_path(p, run_name='__main__')\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "write_file|write_to_file|edit_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy; r=os.environ.get('AGY_PLUGIN_ROOT') or os.environ.get('CLAUDE_PLUGIN_ROOT') or '.'; p=os.path.join(r,'src','forge','hooks_global','guard.py'); os.path.isfile(p) and runpy.run_path(p, run_name='__main__')\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "read_file|view_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,runpy; r=os.environ.get('AGY_PLUGIN_ROOT') or os.environ.get('CLAUDE_PLUGIN_ROOT') or '.'; p=os.path.join(r,'src','forge','hooks_global','tracker.py'); os.path.isfile(p) and runpy.run_path(p, run_name='__main__')\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+domain: example-python-cli
+sources:
+  - name: Typer Official Docs
+    url: https://typer.tiangolo.com/
+  - name: Pydantic v2 Docs
+    url: https://docs.pydantic.dev/latest/
+  - name: pytest Docs
+    url: https://docs.pytest.org/en/stable/

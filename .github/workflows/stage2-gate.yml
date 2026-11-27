@@ -1,0 +1,24 @@
+name: Stage 2 Skill Gate & Verify
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  gate-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - run: uv run playwright install --with-deps chromium
+      - run: uv run python forge.py gate --all --strict
+      - run: uv run python forge.py lock --verify
+      - run: uv run ruff check src tests .agents/hooks forge.py scripts
+      - run: uv run mypy src
+      - run: uv run bandit -r src -ll
+      - run: uv run pytest -v

@@ -1,0 +1,79 @@
+{
+  "version": "1.0",
+  "source": "offline-fallback-snapshot",
+  "notes": "Offline baseline per-1M-token USD fallback rates for deterministic CI and Stage 3 ValueScore arbitrage.",
+  "models": [
+    {
+      "model_id": "gpt-5.4-nano",
+      "provider": "openai",
+      "tier": "fast",
+      "input_per_m": 0.15,
+      "output_per_m": 0.6,
+      "cache_per_m": 0.015,
+      "context_window": 400000,
+      "tokens_per_s": null,
+      "intelligence_index": null,
+      "source": "offline-fallback-snapshot"
+    },
+    {
+      "model_id": "gpt-5.4-mini",
+      "provider": "openai",
+      "tier": "balanced",
+      "input_per_m": 0.4,
+      "output_per_m": 1.6,
+      "cache_per_m": 0.04,
+      "context_window": 400000,
+      "tokens_per_s": null,
+      "intelligence_index": null,
+      "source": "offline-fallback-snapshot"
+    },
+    {
+      "model_id": "gpt-5.6-luna",
+      "provider": "openai",
+      "tier": "judge",
+      "input_per_m": 1.25,
+      "output_per_m": 5.0,
+      "cache_per_m": 0.125,
+      "context_window": 400000,
+      "tokens_per_s": null,
+      "intelligence_index": null,
+      "source": "offline-fallback-snapshot"
+    },
+    {
+      "model_id": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "tier": "fast",
+      "input_per_m": 0.1,
+      "output_per_m": 0.4,
+      "cache_per_m": 0.01,
+      "context_window": 1000000,
+      "tokens_per_s": null,
+      "intelligence_index": null,
+      "source": "offline-fallback-snapshot"
+    },
+    {
+      "model_id": "gemini-3.8-flash",
+      "provider": "gemini",
+      "tier": "balanced",
+      "input_per_m": 0.3,
+      "output_per_m": 2.5,
+      "cache_per_m": 0.03,
+      "context_window": 1000000,
+      "tokens_per_s": null,
+      "intelligence_index": null,
+      "source": "offline-fallback-snapshot"
+    },
+    {
+      "model_id": "claude-sonnet-4-20250514",
+      "provider": "anthropic",
+      "tier": "judge",
+      "input_per_m": 3.0,
+      "output_per_m": 15.0,
+      "cache_per_m": 0.3,
+      "context_window": 200000,
+      "tokens_per_s": null,
+      "intelligence_index": null,
+      "source": "offline-fallback-snapshot"
+    }
+  ]
+}

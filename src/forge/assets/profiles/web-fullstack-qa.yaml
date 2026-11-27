@@ -1,0 +1,12 @@
+name: web-fullstack-qa
+description: Fullstack web & exploratory QA profile combining Python/Git hygiene with live-first Playwright triage and QA explorer.
+skills:
+  - python-cli-clean
+  - git-hygiene
+  - playwright-triage
+  - forge-qa-explorer
+  - forge-research
+include_hooks: true
+skill_rules:
+  - forge-research
+  - forge-qa-explorer

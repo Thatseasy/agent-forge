@@ -1,0 +1,126 @@
+{
+  "lockfile_version": "1.0",
+  "updated_at": "2026-11-27T09:26:59.630928+00:00",
+  "skills": {
+    ".agents/skills/forge-benchmark": {
+      "name": "forge-benchmark",
+      "path": ".agents/skills/forge-benchmark",
+      "version": "0.1.0",
+      "sha256": "b2b80f2e1007b50138ad7e6966ee3eae9dfe3ab586a24ff7ec3b6cd805807543",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 214,
+      "status": "active"
+    },
+    ".agents/skills/forge-qa-explorer": {
+      "name": "forge-qa-explorer",
+      "path": ".agents/skills/forge-qa-explorer",
+      "version": "0.1.0",
+      "sha256": "770b8f3a7f252d7335f0a959bd426fc047b9feca6a79a520efbe5b0b64a64fd5",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 235,
+      "status": "active"
+    },
+    ".agents/skills/forge-research": {
+      "name": "forge-research",
+      "path": ".agents/skills/forge-research",
+      "version": "0.1.0",
+      "sha256": "0cde8b7e75606254fead01cf6753e5cdb7c094782992322be9c199d18255ddc9",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 229,
+      "status": "active"
+    },
+    ".agents/skills/superarchivist-setup": {
+      "name": "superarchivist-setup",
+      "path": ".agents/skills/superarchivist-setup",
+      "version": "0.1.1",
+      "sha256": "8a8e6a7aa70f7f58c444f740c7273d020922ef17451db601a227f820c832087a",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 737,
+      "status": "active"
+    },
+    "library/skills/demo-hype": {
+      "name": "demo-hype",
+      "path": "library/skills/demo-hype",
+      "version": "0.1.0",
+      "sha256": "a3a997d4111fc8dcdc8982a35c1650ae853c73b304913c1993590580428725b8",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 238,
+      "status": "canary"
+    },
+    "library/skills/git-hygiene": {
+      "name": "git-hygiene",
+      "path": "library/skills/git-hygiene",
+      "version": "0.1.0",
+      "sha256": "6e3ce51a2443afe49b4ca21bccff20fd432bd35a927ed9bbcaa936d5ad6ffe34",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 129,
+      "status": "canary"
+    },
+    "library/skills/playwright-triage": {
+      "name": "playwright-triage",
+      "path": "library/skills/playwright-triage",
+      "version": "0.1.0",
+      "sha256": "558651956f7b9d9eb97c2eaa75d21aa9d9342299c7e88e90b651a61f8042f910",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 131,
+      "status": "canary"
+    },
+    "library/skills/python-cli-clean": {
+      "name": "python-cli-clean",
+      "path": "library/skills/python-cli-clean",
+      "version": "0.1.0",
+      "sha256": "02ac44d4a155b62c0dc316c0db5667c08f2a11885b252b2f4b8aa8a84f293fb3",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 129,
+      "status": "canary"
+    },
+    "library/skills/superarchivist-setup": {
+      "name": "superarchivist-setup",
+      "path": "library/skills/superarchivist-setup",
+      "version": "0.1.1",
+      "sha256": "8a8e6a7aa70f7f58c444f740c7273d020922ef17451db601a227f820c832087a",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 737,
+      "status": "canary"
+    },
+    "library/skills/uv-project-setup": {
+      "name": "uv-project-setup",
+      "path": "library/skills/uv-project-setup",
+      "version": "0.1.0",
+      "sha256": "01f528f68eeeaed9d6b0957c2a65eff398b4d8f6530fc98bcf004036ea862a14",
+      "source_url": "local",
+      "last_benchmarked": "",
+      "pass_pow_3": null,
+      "value_score": null,
+      "token_estimate": 119,
+      "status": "canary"
+    }
+  }
+}

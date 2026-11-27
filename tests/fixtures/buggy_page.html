@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>QA Fixture Buggy Page</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    .overflow-banner { width: 640px; background: #fee; padding: 12px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>QA Demo Fixture</h1>
+    <div class="overflow-banner">Wide element causing mobile horizontal overflow (>375px)</div>
+    <input id="name-input" type="text" placeholder="Your name" />
+    <button id="submit-btn" type="button">Submit</button>
+    <p id="status">Idle</p>
+  </main>
+  <script>
+    console.error("Intentional fixture runtime console error: failed config load");
+    document.getElementById("submit-btn").addEventListener("click", () => {
+      document.getElementById("status").textContent = "Submitted";
+    });
+  </script>
+</body>
+</html>

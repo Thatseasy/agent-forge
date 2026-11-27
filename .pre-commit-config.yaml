@@ -1,0 +1,23 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: Ruff Lint Check
+        entry: uv run ruff check src tests .agents/hooks
+        language: system
+        pass_filenames: false
+      - id: mypy-check
+        name: Mypy Type Check
+        entry: uv run mypy src
+        language: system
+        pass_filenames: false
+      - id: forge-gate-check
+        name: Stage 2 Skill Gate Check
+        entry: uv run python forge.py gate --all
+        language: system
+        pass_filenames: false
+      - id: forge-lock-verify
+        name: Skills Lockfile Integrity Check
+        entry: uv run python forge.py lock --verify
+        language: system
+        pass_filenames: false

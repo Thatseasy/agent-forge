@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "rules": [
+    {
+      "id": "forge-research",
+      "skill_path": ".agents/skills/forge-research/SKILL.md",
+      "mandatory": true,
+      "keywords": ["perplexity", "firecrawl", "context7", "exa", "web research", "recherche"],
+      "regex": "(?i)\\b(web[- ]?research|recherch(e|iere)|firecrawl|context7|sonar)\\b",
+      "path_globs": ["src/forge/research/*"]
+    },
+    {
+      "id": "forge-benchmark",
+      "skill_path": ".agents/skills/forge-benchmark/SKILL.md",
+      "mandatory": true,
+      "keywords": ["benchmark", "ablation", "underdog", "hype", "pass^3", "valuescore"],
+      "regex": "(?i)\\b(benchmark|ablation|underdog|hype|eval[- ]?suite|pass@?\\d)\\b",
+      "path_globs": ["src/forge/benchmark/*", "evals/*"]
+    },
+    {
+      "id": "forge-qa-explorer",
+      "skill_path": ".agents/skills/forge-qa-explorer/SKILL.md",
+      "mandatory": true,
+      "keywords": ["exploratory qa", "playwright", "screencast", "chrome-devtools", "buggy_page"],
+      "regex": "(?i)\\b(explorat(ive|ory)|playwright|screencast|video[- ]?audit|qa[- ]?charter)\\b",
+      "path_globs": ["src/forge/qa/*", "*.spec.ts"]
+    },
+    {
+      "id": "superarchivist-setup",
+      "skill_path": ".agents/skills/superarchivist-setup/SKILL.md",
+      "mandatory": true,
+      "keywords": [
+        "superarchivist",
+        "archive-audit",
+        "bootstrap harness",
+        "setup workspace",
+        "project maturity"
+      ],
+      "regex": "(?i)\\b(superarchivist|archive-audit|project[- ]maturity|bootstrap[- ]harness|forge(\\.py)?\\s+setup)\\b",
+      "path_globs": ["src/forge/setup/*", "docs/decisions/*", "AGENTS.md"]
+    }
+  ]
+}

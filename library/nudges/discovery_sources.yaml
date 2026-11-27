@@ -1,0 +1,12 @@
+version: "1.0"
+hype_star_threshold: 500
+github_queries:
+  - query: "agentskills OR agent-skills in:name,description,readme"
+    per_page: 5
+rss_feeds:
+  - name: "Agent Skills Registry Updates"
+    url: "https://github.com/agentskills/agentskills/releases.atom"
+x_urls: []
+registries:
+  - name: "agentskills.io"
+    url: "https://agentskills.io/"

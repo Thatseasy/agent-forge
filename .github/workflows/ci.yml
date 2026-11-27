@@ -1,0 +1,90 @@
+name: Cross-Platform Cold-Start & Plugin CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - run: uv run playwright install --with-deps chromium
+      - run: uv run ruff check src tests .agents/hooks forge.py scripts
+      - run: uv run mypy src
+      - run: uv run bandit -r src -ll
+      - run: uv run agent-forge plugin validate --strict
+      - run: uv run agent-forge plugin build --out-dir dist
+      - run: uv run pytest -q
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agent-forge-dist
+          path: dist/*.whl
+
+  cold-start-matrix:
+    needs: validate-and-build
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v5
+      - uses: actions/download-artifact@v4
+        with:
+          name: agent-forge-dist
+          path: wheel-dist
+      - name: Sterile uvx cold-start verification
+        shell: pwsh
+        run: |
+          $wheel = (Get-ChildItem wheel-dist -Filter *.whl | Select-Object -First 1).FullName
+          $homeDir = Join-Path $env:RUNNER_TEMP "af-home"
+          $repoDir = Join-Path $env:RUNNER_TEMP "sterile-user-repo"
+          New-Item -ItemType Directory -Force -Path $homeDir, $repoDir | Out-Null
+          Set-Location $repoDir
+          "[project]`nname = 'sterile-sample'`nversion = '0.1.0'`n" | Out-File -Encoding utf8NoBOM -NoNewline pyproject.toml
+          git init -q -b main
+          $env:AGENT_FORGE_HOME = $homeDir
+          $env:PYTHONUTF8 = "1"
+          uvx --from $wheel agent-forge doctor --hooks
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          uvx --from $wheel agent-forge init --non-interactive --json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          uvx --from $wheel agent-forge setup --target .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          uvx --from $wheel agent-forge unit sync example-python-cli --target .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          uvx --from $wheel agent-forge gate .agents/skills/example-python-cli-conventions --strict
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          @'
+          import asyncio, json, os, sys
+          from mcp import ClientSession, StdioServerParameters
+          from mcp.client.stdio import stdio_client
+
+          async def smoke():
+              params = StdioServerParameters(
+                  command="uvx",
+                  args=["--from", sys.argv[1], "agent-forge-mcp"],
+                  env={**os.environ, "PYTHONUTF8": "1"},
+              )
+              async with stdio_client(params) as (r, w):
+                  async with ClientSession(r, w) as s:
+                      await s.initialize()
+                      tools = await s.list_tools()
+                      assert len(tools.tools) == 5, f"expected 5 tools, got {len(tools.tools)}"
+                      res = await s.call_tool("forge_doctor", {"target_path": os.getcwd()})
+                      data = json.loads(res.content[0].text)
+                      assert data["status"] == "ok", data
+
+          asyncio.run(smoke())
+          '@ | uv run --with mcp python - $wheel
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

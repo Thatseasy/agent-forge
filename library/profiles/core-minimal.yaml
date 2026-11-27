@@ -1,0 +1,10 @@
+name: core-minimal
+description: Lean baseline profile with essential Python, Git, and research hygiene skills plus deterministic Antigravity hooks.
+skills:
+  - python-cli-clean
+  - git-hygiene
+  - uv-project-setup
+  - forge-research
+include_hooks: true
+skill_rules:
+  - forge-research

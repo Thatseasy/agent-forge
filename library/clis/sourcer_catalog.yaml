@@ -1,0 +1,474 @@
+version: "1.0"
+description: Curated high-signal web, docs, llms.txt, Context7, CLI, and token-lean MCP sources per tech domain.
+
+sources:
+  - id: uv-llms-txt
+    name: Astral uv Documentation (llms.txt)
+    domain: python-uv
+    domains: [python-uv]
+    binding_type: llms_txt
+    url: https://docs.astral.sh/uv/llms.txt
+    probe_url: https://docs.astral.sh/uv/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.94
+    base_freshness: 0.95
+    base_token_efficiency: 0.94
+    description: Official Astral uv llms.txt index for package, venv, and lockfile workflows.
+    tags: [python, uv, packaging]
+
+  - id: ruff-llms-txt
+    name: Astral Ruff Documentation (llms.txt)
+    domain: python-uv
+    domains: [python-uv]
+    binding_type: llms_txt
+    url: https://docs.astral.sh/ruff/llms.txt
+    probe_url: https://docs.astral.sh/ruff/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.90
+    base_freshness: 0.93
+    base_token_efficiency: 0.93
+    description: Official Ruff linter and formatter rules reference in llms.txt format.
+    tags: [python, ruff, linting]
+
+  - id: context7-python-core
+    name: Context7 Python Core Docs
+    domain: python-uv
+    domains: [python-uv]
+    binding_type: context7
+    url: https://context7.com/api/v1/search?query=pydantic
+    probe_url: https://context7.com/api/v1/search
+    probe_kind: context7
+    context7_query: pydantic
+    base_signal_quality: 0.93
+    base_freshness: 0.92
+    base_token_efficiency: 0.95
+    description: Version-pinned Python library docs (Pydantic, Typer, httpx) via Context7.
+    tags: [python, pydantic, context7]
+
+  - id: uv-cli
+    name: uv Local CLI
+    domain: python-uv
+    domains: [python-uv]
+    binding_type: cli
+    url: https://docs.astral.sh/uv/
+    probe_kind: cli_local
+    cli_template:
+      command: uv
+      defaultArgs: [run]
+      description: Fast deterministic Python environment and test runner
+    base_signal_quality: 0.91
+    base_freshness: 0.90
+    base_token_efficiency: 0.96
+    description: Local uv CLI for zero-token environment inspection and execution.
+    tags: [python, uv, cli]
+
+  - id: nextjs-llms-txt
+    name: Next.js Documentation (llms.txt)
+    domain: nextjs-react
+    domains: [nextjs-react, vercel]
+    binding_type: llms_txt
+    url: https://nextjs.org/docs/llms.txt
+    probe_url: https://nextjs.org/docs/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.95
+    base_freshness: 0.95
+    base_token_efficiency: 0.92
+    description: Official Next.js App Router and Server Actions llms.txt index.
+    tags: [nextjs, react, llms_txt]
+
+  - id: context7-nextjs
+    name: Context7 Next.js & React Docs
+    domain: nextjs-react
+    domains: [nextjs-react, typescript-node]
+    binding_type: context7
+    url: https://context7.com/api/v1/search?query=next
+    probe_url: https://context7.com/api/v1/search
+    probe_kind: context7
+    context7_query: next
+    base_signal_quality: 0.94
+    base_freshness: 0.93
+    base_token_efficiency: 0.95
+    description: Version-accurate Next.js and React API documentation via Context7.
+    tags: [nextjs, react, context7]
+
+  - id: react-llms-txt
+    name: React Documentation (llms.txt)
+    domain: nextjs-react
+    domains: [nextjs-react]
+    binding_type: llms_txt
+    url: https://react.dev/llms.txt
+    probe_url: https://react.dev/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.90
+    base_freshness: 0.91
+    base_token_efficiency: 0.91
+    description: Official React hooks and concurrent rendering docs in llms.txt format.
+    tags: [react, frontend, llms_txt]
+
+  - id: chrome-devtools-slim
+    name: Chrome DevTools MCP (--slim)
+    domain: nextjs-react
+    domains: [nextjs-react, playwright-qa]
+    binding_type: mcp
+    url: https://github.com/ChromeDevTools/chrome-devtools-mcp
+    probe_kind: none
+    mcp_server:
+      chrome-devtools:
+        command: npx
+        args:
+          - "-y"
+          - "chrome-devtools-mcp@latest"
+          - "--slim"
+          - "--no-usage-statistics"
+          - "--no-performance-crux"
+        optionalAutoConnectArgs:
+          - "--autoConnect"
+    base_signal_quality: 0.89
+    base_freshness: 0.90
+    base_token_efficiency: 0.86
+    description: Slim Chrome DevTools MCP for live console, network, and DOM inspection.
+    tags: [browser, devtools, mcp, slim]
+
+  - id: supabase-llms-txt
+    name: Supabase Documentation (llms.txt)
+    domain: supabase
+    domains: [supabase]
+    binding_type: llms_txt
+    url: https://supabase.com/llms.txt
+    probe_url: https://supabase.com/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.94
+    base_freshness: 0.94
+    base_token_efficiency: 0.93
+    description: Official Supabase Auth, Postgres, RLS, and Edge Functions llms.txt index.
+    tags: [supabase, postgres, auth]
+
+  - id: context7-supabase
+    name: Context7 Supabase JS Docs
+    domain: supabase
+    domains: [supabase]
+    binding_type: context7
+    url: https://context7.com/api/v1/search?query=supabase
+    probe_url: https://context7.com/api/v1/search
+    probe_kind: context7
+    context7_query: supabase
+    base_signal_quality: 0.92
+    base_freshness: 0.91
+    base_token_efficiency: 0.95
+    description: Version-pinned @supabase/supabase-js and @supabase/ssr docs via Context7.
+    tags: [supabase, context7]
+
+  - id: supabase-mcp2cli
+    name: Supabase mcp2cli Wrapper (--toon)
+    domain: supabase
+    domains: [supabase]
+    binding_type: mcp2cli
+    url: https://supabase.com/docs/guides/getting-started/mcp
+    probe_kind: cli_local
+    cli_template:
+      command: mcp2cli
+      defaultArgs: [--session-start, --toon, --mcp-stdio, "npx -y @supabase/mcp-server-supabase@latest"]
+      description: Token-lean mcp2cli --toon wrapper for Supabase MCP schemas on demand
+    base_signal_quality: 0.91
+    base_freshness: 0.90
+    base_token_efficiency: 0.97
+    description: Schema-on-demand Supabase MCP access via mcp2cli --toon to avoid context bloat.
+    tags: [supabase, mcp2cli, toon]
+
+  - id: supabase-cli
+    name: Supabase Local CLI
+    domain: supabase
+    domains: [supabase]
+    binding_type: cli
+    url: https://supabase.com/docs/reference/cli/introduction
+    probe_kind: cli_local
+    cli_template:
+      command: supabase
+      defaultArgs: [status]
+      description: Local Supabase migration, typegen, and DB diff CLI
+    base_signal_quality: 0.88
+    base_freshness: 0.89
+    base_token_efficiency: 0.94
+    description: Deterministic local Supabase CLI for migrations and schema inspection.
+    tags: [supabase, cli]
+
+  - id: playwright-cli
+    name: Playwright CLI (Stateful Lean Driver)
+    domain: playwright-qa
+    domains: [playwright-qa]
+    binding_type: cli
+    url: https://playwright.dev/docs/test-cli
+    probe_kind: cli_local
+    cli_template:
+      command: playwright-cli
+      defaultArgs: []
+      description: Stateful local browser driving without heavy upfront MCP schema
+    base_signal_quality: 0.93
+    base_freshness: 0.92
+    base_token_efficiency: 0.97
+    description: Token-lean local Playwright browser automation CLI without upfront MCP schema.
+    tags: [playwright, qa, cli]
+
+  - id: playwright-llms-txt
+    name: Playwright Documentation (llms.txt)
+    domain: playwright-qa
+    domains: [playwright-qa]
+    binding_type: llms_txt
+    url: https://playwright.dev/llms.txt
+    probe_url: https://playwright.dev/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.92
+    base_freshness: 0.92
+    base_token_efficiency: 0.92
+    description: Official Playwright locators, tracing, and assertion llms.txt reference.
+    tags: [playwright, qa, llms_txt]
+
+  - id: context7-playwright
+    name: Context7 Playwright Docs
+    domain: playwright-qa
+    domains: [playwright-qa]
+    binding_type: context7
+    url: https://context7.com/api/v1/search?query=playwright
+    probe_url: https://context7.com/api/v1/search
+    probe_kind: context7
+    context7_query: playwright
+    base_signal_quality: 0.91
+    base_freshness: 0.91
+    base_token_efficiency: 0.94
+    description: Versioned Playwright Test and locator documentation via Context7.
+    tags: [playwright, context7]
+
+  - id: notion-mcp2cli
+    name: Notion mcp2cli Wrapper (--toon)
+    domain: notion
+    domains: [notion]
+    binding_type: mcp2cli
+    url: https://developers.notion.com/docs/mcp
+    probe_kind: cli_local
+    cli_template:
+      command: mcp2cli
+      defaultArgs: [--session-start, --toon, --mcp-stdio, "npx -y @notionhq/notion-mcp-server"]
+      description: Token-lean mcp2cli --toon wrapper for Notion API & MCP tools
+    base_signal_quality: 0.93
+    base_freshness: 0.92
+    base_token_efficiency: 0.97
+    description: On-demand Notion MCP/OpenAPI wrapper with --toon compact output.
+    tags: [notion, mcp2cli, toon]
+
+  - id: notion-llms-txt
+    name: Notion Developers Docs (llms.txt)
+    domain: notion
+    domains: [notion]
+    binding_type: llms_txt
+    url: https://developers.notion.com/llms.txt
+    probe_url: https://developers.notion.com/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.90
+    base_freshness: 0.91
+    base_token_efficiency: 0.92
+    description: Official Notion API blocks, databases, and OAuth llms.txt index.
+    tags: [notion, llms_txt]
+
+  - id: context7-notion
+    name: Context7 Notion SDK Docs
+    domain: notion
+    domains: [notion]
+    binding_type: context7
+    url: https://context7.com/api/v1/search?query=notion
+    probe_url: https://context7.com/api/v1/search
+    probe_kind: context7
+    context7_query: notion
+    base_signal_quality: 0.89
+    base_freshness: 0.89
+    base_token_efficiency: 0.94
+    description: Versioned @notionhq/client and notion-client docs via Context7.
+    tags: [notion, context7]
+
+  - id: openrouter-models-feed
+    name: OpenRouter Models & 0-USD Pricing Feed
+    domain: ai-evals
+    domains: [ai-evals]
+    binding_type: cli
+    url: https://openrouter.ai/api/v1/models
+    probe_url: https://openrouter.ai/api/v1/models
+    probe_kind: openrouter
+    cli_template:
+      command: mcp2cli
+      defaultArgs: [--session-start, --toon, --spec, "https://openrouter.ai/openapi.yaml"]
+      description: Zero-cost live OpenRouter model and pricing catalog feed
+    base_signal_quality: 0.95
+    base_freshness: 0.98
+    base_token_efficiency: 0.96
+    description: Live 0-USD OpenRouter /api/v1/models feed for model IDs, context limits, and pricing.
+    tags: [ai-evals, openrouter, pricing]
+
+  - id: artificial-analysis-mcp
+    name: Artificial Analysis Benchmark MCP
+    domain: ai-evals
+    domains: [ai-evals]
+    binding_type: mcp
+    url: https://mcp.artificialanalysis.ai/mcp
+    probe_url: https://mcp.artificialanalysis.ai/mcp
+    probe_kind: artificial_analysis
+    mcp_server:
+      artificial-analysis:
+        url: https://mcp.artificialanalysis.ai/mcp
+        authNote: Sign in via OAuth in Antigravity MCP UI (2x quota) or pass x-api-key header via AA_API_KEY
+    base_signal_quality: 0.94
+    base_freshness: 0.96
+    base_token_efficiency: 0.85
+    auth_note: Sign in via OAuth in Antigravity MCP UI (2x quota) or pass x-api-key header via AA_API_KEY
+    description: Live model quality, latency, and price-performance benchmark MCP server.
+    tags: [ai-evals, benchmarks, mcp]
+
+  - id: context7-ai-sdks
+    name: Context7 AI & Eval SDK Docs
+    domain: ai-evals
+    domains: [ai-evals]
+    binding_type: context7
+    url: https://context7.com/api/v1/search?query=litellm
+    probe_url: https://context7.com/api/v1/search
+    probe_kind: context7
+    context7_query: litellm
+    base_signal_quality: 0.92
+    base_freshness: 0.92
+    base_token_efficiency: 0.95
+    description: Versioned docs for LiteLLM, OpenAI, Google GenAI, and eval frameworks via Context7.
+    tags: [ai-evals, context7, llm]
+
+  - id: pydantic-ai-llms-txt
+    name: Pydantic AI Documentation (llms.txt)
+    domain: ai-evals
+    domains: [ai-evals, python-uv]
+    binding_type: llms_txt
+    url: https://ai.pydantic.dev/llms.txt
+    probe_url: https://ai.pydantic.dev/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.91
+    base_freshness: 0.93
+    base_token_efficiency: 0.93
+    description: Structured agent, eval, and tool-typing reference in llms.txt format.
+    tags: [ai-evals, python, llms_txt]
+
+  - id: vercel-llms-txt
+    name: Vercel Platform Docs (llms.txt)
+    domain: vercel
+    domains: [vercel, nextjs-react]
+    binding_type: llms_txt
+    url: https://vercel.com/docs/llms.txt
+    probe_url: https://vercel.com/docs/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.93
+    base_freshness: 0.94
+    base_token_efficiency: 0.93
+    description: Official Vercel deployment, Edge Runtime, and Fluid Compute llms.txt index.
+    tags: [vercel, deployment, llms_txt]
+
+  - id: ai-sdk-llms-txt
+    name: Vercel AI SDK Docs (llms.txt)
+    domain: vercel
+    domains: [vercel, ai-evals, nextjs-react]
+    binding_type: llms_txt
+    url: https://sdk.vercel.ai/llms.txt
+    probe_url: https://sdk.vercel.ai/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.93
+    base_freshness: 0.94
+    base_token_efficiency: 0.94
+    description: Official Vercel AI SDK streaming, tool-calling, and provider docs in llms.txt.
+    tags: [vercel, ai-sdk, llms_txt]
+
+  - id: vercel-cli
+    name: Vercel CLI
+    domain: vercel
+    domains: [vercel]
+    binding_type: cli
+    url: https://vercel.com/docs/cli
+    probe_kind: cli_local
+    cli_template:
+      command: vercel
+      defaultArgs: [env, ls]
+      description: Local Vercel deployment, logs, and environment variable CLI
+    base_signal_quality: 0.89
+    base_freshness: 0.90
+    base_token_efficiency: 0.94
+    description: Local Vercel CLI for preview deployments and log inspection.
+    tags: [vercel, cli]
+
+  - id: context7-typescript
+    name: Context7 TypeScript & Node Docs
+    domain: typescript-node
+    domains: [typescript-node, nextjs-react]
+    binding_type: context7
+    url: https://context7.com/api/v1/search?query=typescript
+    probe_url: https://context7.com/api/v1/search
+    probe_kind: context7
+    context7_query: typescript
+    base_signal_quality: 0.91
+    base_freshness: 0.90
+    base_token_efficiency: 0.94
+    description: Versioned TypeScript compiler, tsconfig, and Node ecosystem docs via Context7.
+    tags: [typescript, node, context7]
+
+  - id: docker-llms-txt
+    name: Docker Documentation (llms.txt)
+    domain: docker-infra
+    domains: [docker-infra]
+    binding_type: llms_txt
+    url: https://docs.docker.com/llms.txt
+    probe_url: https://docs.docker.com/llms.txt
+    probe_kind: llms_txt
+    base_signal_quality: 0.88
+    base_freshness: 0.90
+    base_token_efficiency: 0.90
+    description: Official Dockerfiles, Compose, and BuildKit llms.txt index.
+    tags: [docker, containers, llms_txt]
+
+  - id: docker-cli
+    name: Docker CLI
+    domain: docker-infra
+    domains: [docker-infra]
+    binding_type: cli
+    url: https://docs.docker.com/reference/cli/docker/
+    probe_kind: cli_local
+    cli_template:
+      command: docker
+      defaultArgs: [compose, ps]
+      description: Deterministic container build and inspection CLI
+    base_signal_quality: 0.87
+    base_freshness: 0.88
+    base_token_efficiency: 0.94
+    description: Local Docker CLI for image builds and container status.
+    tags: [docker, cli]
+
+  - id: mcp2cli-bridge
+    name: mcp2cli Token-Lean Bridge (--toon)
+    domain: general
+    domains: [general, python-uv, nextjs-react, typescript-node, ai-evals]
+    binding_type: mcp2cli
+    url: https://github.com/knowsuchagency/mcp2cli
+    probe_kind: cli_local
+    cli_template:
+      command: mcp2cli
+      defaultArgs: [--session-start, --toon]
+      description: Token-lean runtime wrapper for OpenAPI, GraphQL, and MCP tools
+    base_signal_quality: 0.88
+    base_freshness: 0.88
+    base_token_efficiency: 0.98
+    description: Universal mcp2cli --session-start --toon wrapper eliminating static MCP schema bloat.
+    tags: [mcp2cli, toon, general]
+
+  - id: context7-general
+    name: Context7 Universal Library Index
+    domain: general
+    domains: [general]
+    binding_type: context7
+    url: https://context7.com/api/v1/search?query=modelcontextprotocol
+    probe_url: https://context7.com/api/v1/search
+    probe_kind: context7
+    context7_query: modelcontextprotocol
+    base_signal_quality: 0.88
+    base_freshness: 0.90
+    base_token_efficiency: 0.94
+    description: Universal version-accurate documentation lookup via Context7.
+    tags: [context7, general]
